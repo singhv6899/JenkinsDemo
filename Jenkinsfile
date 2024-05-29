@@ -21,7 +21,9 @@ pipeline {
             }
         }*/
 
-        stage('Test'){
+        stage{
+            parallel{
+                stage('Test'){
             agent{
                 docker{
                     image 'node:18-alpine'
@@ -35,6 +37,8 @@ pipeline {
                 '''
             }
             
+        }
+            }
         }
 
         /*stage('E2E'){
