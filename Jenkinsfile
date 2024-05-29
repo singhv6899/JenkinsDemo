@@ -21,23 +21,22 @@ pipeline {
             }
         }*/
 
-        stage('Tests'{
+        stage('Tests'){
             parallel{
                 stage('Unit Test'){
-            agent{
-                docker{
-                    image 'node:18-alpine'
-                    reuseNode true
+                    agent{
+                        docker{
+                            image 'node:18-alpine'
+                            reuseNode true
+                        }
+                    }
+                    steps{
+                        sh'''
+                            test -f build/index.html
+                            npm test
+                        '''
+                    }
                 }
-            }
-            steps{
-                sh'''
-                    test -f build/index.html
-                    npm test
-                '''
-            }
-            
-        }
             }
         }
 
@@ -61,9 +60,9 @@ pipeline {
     
     
 }
-post{
-        always{
-            junit 'jest-results/junit.xml'
+        post{
+            always{
+                junit 'jest-results/junit.xml'
+            }
         }
-    }
 }
