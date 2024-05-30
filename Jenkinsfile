@@ -115,7 +115,7 @@ pipeline {
             }
 
             environment {
-                CI_ENVIRONMENT_URL = 'https://6658fa566690d5872bcfb890--tubular-macaron-666010.netlify.app/'
+                CI_ENVIRONMENT_URL = 'https://https://tubular-macaron-666010.netlify.app'
             }
 
             steps {
